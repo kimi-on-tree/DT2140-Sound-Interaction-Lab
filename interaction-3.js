@@ -57,9 +57,9 @@ function accelerationChange(accx, accy, accz) {
 
 function rotationChange(rotx, roty, rotz) {
     if (Math.abs(rotx) < 20){
-        play = True
+        play = true
     }else{
-        play = False
+        play = false
     }
 }
 
@@ -111,7 +111,9 @@ function playAudio(pressure) {
         return;
     }
     console.log(pressure)
+    // dspNode.setParamValue("/torpedo/volume", 1)
     dspNode.setParamValue("/torpedo/trigger", 1)
+    setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0); }, 150);
 }
 
 //==========================================================================================
