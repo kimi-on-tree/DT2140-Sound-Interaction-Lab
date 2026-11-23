@@ -56,8 +56,10 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
-    pos = map(roty, 0, 90, 0, 0.5, true);
-    dspNode.setParamValue("/door/position", pos);
+    if (!dspNode) return;
+    const angle = Math.abs(degrees(roty));          // drop degrees() if roty is already in degrees
+    const pos = map(angle, 0, 90, 0, 0.5, true);
+    dspNode.setParamValue("/door/door/position", pos); // verify address in console
 }
 
 function mousePressed() {
