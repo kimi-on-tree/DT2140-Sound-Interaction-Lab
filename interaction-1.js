@@ -12,7 +12,7 @@ let dspNodeParams = null;
 let jsonParams = null;
 
 // Change here to ("tuono") depending on your wasm file name
-const dspName = "thunder";
+const dspName = "wind";
 const instance = new FaustWasm2ScriptProcessor(dspName);
 
 // output to window or npm package module
@@ -25,7 +25,7 @@ if (typeof module === "undefined") {
 }
 
 // The name should be the same as the WASM file, so change tuono with brass if you use brass.wasm
-thunder.createDSP(audioContext, 1024)
+wind.createDSP(audioContext, 1024)
     .then(node => {
         dspNode = node;
         dspNode.connect(audioContext.destination);
@@ -53,6 +53,7 @@ thunder.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     // playAudio()
+    dspNode.setParamValue("/wind/wind/force", accx)
 }
 
 function rotationChange(rotx, roty, rotz) {
@@ -66,6 +67,8 @@ function mousePressed() {
 function deviceMoved() {
     movetimer = millis();
     statusLabels[2].style("color", "pink");
+    playAudio();
+
 }
 
 function deviceTurned() {
@@ -74,7 +77,6 @@ function deviceTurned() {
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    playAudio();
 }
 
 function getMinMaxParam(address) {
@@ -106,8 +108,8 @@ function playAudio() {
     // them printed on the console of your browser when you load the page)
     // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
     // "/thunder/rumble".
-    dspNode.setParamValue("/thunder/rumble", 1)
-    setTimeout(() => { dspNode.setParamValue("/thunder/rumble", 0) }, 100);
+    // dspNode.setParamValue("/wind/rumble", 1)
+    // setTimeout(() => { dspNode.setParamValue("/thunder/rumble", 0) }, 100);
 }
 
 //==========================================================================================
