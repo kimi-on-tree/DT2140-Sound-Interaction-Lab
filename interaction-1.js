@@ -50,10 +50,15 @@ wind.createDSP(audioContext, 1024)
 //------------------------------------------------------------------------------------------
 //
 //==========================================================================================
+function mapValues (number, inMin, inMax, outMin, outMax) {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
 
 function accelerationChange(accx, accy, accz) {
     // playAudio()
-    dspNode.setParamValue("/wind/volume", accx)
+    let vol = 0
+    vol = mapValues(accx, -15,15, 0, 1)
+    dspNode.setParamValue("/wind/volume", vol)
 }
 
 function rotationChange(rotx, roty, rotz) {
