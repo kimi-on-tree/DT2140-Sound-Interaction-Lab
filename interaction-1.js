@@ -53,7 +53,7 @@ wind.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     // playAudio()
-    dspNode.setParamValue("/wind/wind/force", accx)
+    dspNode.setParamValue("/wind/volume", accx)
 }
 
 function rotationChange(rotx, roty, rotz) {
@@ -108,7 +108,7 @@ function playAudio() {
     // them printed on the console of your browser when you load the page)
     // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
     // "/thunder/rumble".
-    dspNode.setParamValue("/wind/volume", 1)
+    dspNode.setParamValue("/wind/wind/force", 1)
     // setTimeout(() => { dspNode.setParamValue("/thunder/rumble", 0) }, 100);
 }
 
