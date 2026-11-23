@@ -107,7 +107,7 @@ function playAudio() {
         return;
     }
     dspNode.setParamValue("/door/volume", 1)
-    setTimeout(() => { dspNode.setParamValue("/door/volume", 0) }, 100);
+    // setTimeout(() => { dspNode.setParamValue("/door/volume", 0) }, 100);
 }
 
 //==========================================================================================
